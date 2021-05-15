@@ -39,9 +39,6 @@ pipeline {
 
     stage('Notification') {
       steps {
-        script {
-          info()
-        }
           // send to email
         emailext (
           subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
