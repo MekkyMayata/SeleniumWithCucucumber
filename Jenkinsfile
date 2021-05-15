@@ -5,11 +5,11 @@ pipeline {
     branch = 'master'
   }
   stages {
-    script {
-      notifyStarted()
-    }
     stage('SCM Checkout') {
       steps {
+        script {
+          notifyStarted()
+        }
         git branch: branch, url: 'https://github.com/MekkyMayata/SeleniumWithCucucumber.git'
       }
     }
