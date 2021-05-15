@@ -1,6 +1,15 @@
 pipeline {
   agent any
+  
+  environment {
+    branch = 'master'
+  }
   stages {
+    stage('SCM Checkout') {
+      steps {
+        git branch: branch, url: 'https://github.com/MekkyMayata/SeleniumWithCucucumber.git'
+      }
+    }
     stage('Test') {
       parallel {
         stage('Maven') {
@@ -16,6 +25,11 @@ pipeline {
           }
         }
 
+      }
+    }
+    stage('Clean workspace on condition') {
+      steps {
+        cleanWs cleanWhenSuccess: false, cleanWhenNotBuilt: true, cleanWhenAborted: true, cleanWhenUnstable: true, cleanWhenFailure: true
       }
     }
 
