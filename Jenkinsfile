@@ -20,6 +20,7 @@ pipeline {
         }
 
         stage('Cucumber') {
+          // ensure plugin exists
           steps {
             cucumber '**/*.json'
           }
